@@ -1,0 +1,7 @@
+import com.rhindon.bridge.multitenant.EventEntryPlayer
+
+model {
+    Iterable eventEntryPlayerList
+}
+
+json g.render(eventEntryPlayerList ?: [])

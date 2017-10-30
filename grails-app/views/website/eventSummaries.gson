@@ -4,4 +4,4 @@ model {
   Iterable<BridgeEvent> bridgeEventList
 }
 
-json tmpl.bridgeEvent(bridgeEventList ?: [])
+json tmpl.summary(bridgeEventList ?: [])

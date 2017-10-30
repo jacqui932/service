@@ -5,6 +5,9 @@ import com.rhindon.bridge.multitenant.BridgeEvent
 import com.rhindon.bridge.multitenant.EventEntry
 import grails.gorm.multitenancy.CurrentTenant
 import grails.gorm.transactions.Transactional
+import org.hibernate.criterion.CriteriaSpecification
+
+import javax.persistence.criteria.JoinType
 
 @Transactional
 class EventEntryService {
