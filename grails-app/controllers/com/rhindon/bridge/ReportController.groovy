@@ -1,5 +1,6 @@
 package com.rhindon.bridge
 
+import com.google.common.collect.Iterables
 import com.rhindon.bridge.filter.*
 import com.rhindon.bridge.multitenant.BridgeEvent
 import com.rhindon.bridge.multitenant.EventEntryPlayer
@@ -19,41 +20,47 @@ class ReportController {
     def financialTransactionService
 
     def monthlyFinancialReport(FinancialTransactionFilter filter) {
-        render(filename:"File report_${filter.month}${filter.year}.pdf",
-                view:"/report/monthlyFinancialReport",
+        render(filename: "File report_${filter.month}${filter.year}.pdf",
+                view: "/report/monthlyFinancialReport",
                 model: financialTransactionService.createMonthlyFinancialReportData(filter))
     }
 
     def bridgeEventsReport(BridgeEventFilter filter) {
         filter.year = 2017 - 1900
-        render(filename:"File bridgeEvents.pdf",
-                view:"/report/bridgeEvents",
+        render(filename: "File bridgeEvents.pdf",
+                view: "/report/bridgeEvents",
                 model: [events: bridgeEventService.search(filter)])
     }
 
     def clubsReport(ClubFilter filter) {
-        render(filename:"File clubs.pdf",
-                view:"/report/clubs",
+        render(filename: "File clubs.pdf",
+                view: "/report/clubs",
                 model: [clubs: clubService.search(filter)])
     }
 
     def heatsReport(HeatFilter filter) {
-        render(filename:"File heats.pdf",
-                view:"/report/heats",
+        render(filename: "File heats.pdf",
+                view: "/report/heats",
                 model: heatService.createHeatsReportData(filter))
     }
 
     def eventHeatsReport(HeatFilter filter) {
-        render(filename:"File eventHeats.pdf",
-                view:"/report/eventHeats",
+        render(filename: "File eventHeats.pdf",
+                view: "/report/eventHeats",
                 model: [event: BridgeEvent.get(filter.event), heats: heatService.search(filter)])
     }
 
     def eventPlayersReport(EventEntryFilter filter) {
         filter.withdrawn = false
-        render(filename:"File eventPlayers.pdf",
-                view:"/report/eventPlayers",
+        render(filename: "File eventPlayers.pdf",
+                view: "/report/eventPlayers",
                 model: [event: BridgeEvent.get(filter.event), eventEntries: eventEntryService.search(filter)])
+    }
+
+    private def groupVL(eventEntryPlayers) {
+        eventEntryPlayers.groupBy({ it -> [firstName: it.firstName, lastName: it.lastName, ebuNumber: it.ebuNumber] })
+                .collectEntries({ key, List<EventEntryPlayer> value -> [[player: key, total: value.sum {it.victorLudorumPoints}]: value.collectEntries {
+            EventEntryPlayer e -> [(e.eventEntry.event): e.victorLudorumPoints] }] }).sort({it -> -it.key.total})
     }
 
     def victorLudorumReport(EventEntryPlayerFilter filter) {
@@ -73,8 +80,13 @@ class ReportController {
             }
         })
 
-        render(filename:"File victorLudorum.pdf",
-                view:"/report/victorLudorum",
-                model: [all: all, cadet: cadet, intermediate: intermediate])
+        render(filename: "File victorLudorum.pdf",
+                view: "/report/victorLudorum",
+                model: [
+                        events      : new ArrayList(all.groupBy {it -> it.eventEntry.event}.keySet().sort { it -> it.dateTime }),
+                        all         : groupVL(all),
+                        cadet       : groupVL(cadet),
+                        intermediate: groupVL(intermediate)
+                ])
     }
 }
