@@ -1,7 +1,9 @@
 import com.rhindon.bridge.multitenant.EventEntry
+import groovy.transform.Field
 
-model {
-    EventEntry eventEntry
+@Field EventEntry eventEntry
+
+json {
+    id eventEntry.id
+    players tmpl.eventEntryPlayer(eventEntry.players)
 }
-
-json g.render(eventEntry, [expand:['players']])

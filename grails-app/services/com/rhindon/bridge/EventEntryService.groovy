@@ -7,8 +7,6 @@ import grails.gorm.multitenancy.CurrentTenant
 import grails.gorm.transactions.Transactional
 import org.hibernate.criterion.CriteriaSpecification
 
-import javax.persistence.criteria.JoinType
-
 @Transactional
 class EventEntryService {
 
@@ -20,7 +18,8 @@ class EventEntryService {
     }
 
     def search(EventEntryFilter filter) {
-        EventEntry.createCriteria().list {
+        EventEntry.createCriteria().listDistinct {
+            createAlias('players', 'players')
             if (filter.event) {
                 eq("event", BridgeEvent.get(filter.event))
             }
