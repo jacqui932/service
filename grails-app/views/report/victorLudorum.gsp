@@ -13,13 +13,19 @@
     <table class="table">
         <thead>
             <th>Name</th>
-            <th>Points</th>
+            <g:each in="${events}" var="event">
+                <th>${event.name}</th>
+            </g:each>
+            <th>Total</th>
         </thead>
         <tbody>
             <g:each in="${all}" var="eventEntryPlayer">
-                <tr>
-                    <td>${eventEntryPlayer.lastName}, ${eventEntryPlayer.firstName}</td>
-                    <td>${eventEntryPlayer.victorLudorumPoints}</td>
+                <tr style="page-break-inside:avoid;">
+                    <td>${eventEntryPlayer.key.player.lastName}, ${eventEntryPlayer.key.player.firstName}</td>
+                    <g:each in="${events}" var="event">
+                        <td>${eventEntryPlayer.value.get(event)}</td>
+                    </g:each>
+                    <td>${eventEntryPlayer.key.total}</td>
                 </tr>
             </g:each>
         </tbody>
@@ -28,13 +34,19 @@
     <table class="table">
         <thead>
         <th>Name</th>
-        <th>Points</th>
+        <g:each in="${events}" var="event">
+            <th>${event.name}</th>
+        </g:each>
+        <th>Total</th>
         </thead>
         <tbody>
         <g:each in="${intermediate}" var="eventEntryPlayer">
-            <tr>
-                <td>${eventEntryPlayer.lastName}, ${eventEntryPlayer.firstName}</td>
-                <td>${eventEntryPlayer.victorLudorumPoints}</td>
+            <tr style="page-break-inside:avoid;">
+                <td>${eventEntryPlayer.key.player.lastName}, ${eventEntryPlayer.key.player.firstName}</td>
+                <g:each in="${events}" var="event">
+                    <td>${eventEntryPlayer.value.get(event)}</td>
+                </g:each>
+                <td>${eventEntryPlayer.key.total}</td>
             </tr>
         </g:each>
         </tbody>
@@ -43,13 +55,19 @@
     <table class="table">
         <thead>
         <th>Name</th>
-        <th>Points</th>
+        <g:each in="${events}" var="event">
+            <th>${event.name}</th>
+        </g:each>
+        <th>Total</th>
         </thead>
         <tbody>
         <g:each in="${cadet}" var="eventEntryPlayer">
-            <tr>
-                <td>${eventEntryPlayer.lastName}, ${eventEntryPlayer.firstName}</td>
-                <td>${eventEntryPlayer.victorLudorumPoints}</td>
+            <tr style="page-break-inside:avoid;">
+                <td>${eventEntryPlayer.key.player.lastName}, ${eventEntryPlayer.key.player.firstName}</td>
+                <g:each in="${events}" var="event">
+                    <td>${eventEntryPlayer.value.get(event)}</td>
+                </g:each>
+                <td>${eventEntryPlayer.key.total}</td>
             </tr>
         </g:each>
         </tbody>

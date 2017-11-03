@@ -70,6 +70,9 @@ dependencies {
     compile 'org.grails.plugins:aws-sdk-s3:2.1.5'
     compile 'org.grails.plugins:wkhtmltopdf:1.0.0.RC7'
     compile "org.grails.plugins:views-json:1.2.4"
+    compile 'org.grails.plugins:database-migration:3.0.3'
+    compile 'org.liquibase:liquibase-core:3.5.3'
+    compile 'com.google.guava:guava:18.0'
 }
 
 bootRun {

@@ -2,11 +2,9 @@ package com.rhindon.bridge
 
 import com.rhindon.bridge.filter.BridgeEventFilter
 import com.rhindon.bridge.filter.ClubFilter
-import com.rhindon.bridge.filter.EventEntryPlayerFilter
 import com.rhindon.bridge.filter.HeatFilter
 import com.rhindon.bridge.multitenant.BridgeEvent
-import com.rhindon.bridge.multitenant.EventEntryPlayer
-import grails.converters.JSON
+import com.rhindon.bridge.multitenant.EventEntry
 
 class WebsiteController {
 
@@ -18,7 +16,7 @@ class WebsiteController {
 
     def heatService
 
-    def eventEntryPlayerService
+    def eventEntryService
 
     def bridgeEmailService
 
@@ -38,14 +36,8 @@ class WebsiteController {
         respond BridgeEvent.get(id)
     }
 
-    def entries() {
-        def filter = new EventEntryPlayerFilter(request.JSON)
-        def results = EventEntryPlayer.withCriteria {
-            eventEntry {
-                eq "event.id", filter.event
-            }
-        }
-        render results.groupBy({eventPlayer -> eventPlayer.eventEntry}).values() as JSON
+    def entries(Long id) {
+        respond EventEntry.findAllByEvent(BridgeEvent.get(id), [fetch:[players:"join"]])
     }
 
 //    def thankyou() {

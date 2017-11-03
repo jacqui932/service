@@ -33,7 +33,7 @@ class UrlMappings {
         post "/website/eventSummaries.($format)?"(controller: "website", action: "eventSummaries")
         post "/website/clubs.($format)?"(controller: "website", action: "clubs")
         post "/website/heats.($format)?"(controller: "website", action: "heats")
-        post "/website/entries.($format)?"(controller: "website", action: "entries")
+        get "/website/entries/$id.($format)?"(controller: "website", action: "entries")
         get "/website/event/$id(.$format)?"(controller: "website", action: "event")
 
         post "/website/thankyou"(controller: "website", action: "thankyou")
