@@ -1,0 +1,6 @@
+import com.rhindon.bridge.multitenant.BridgeEvent
+import groovy.transform.Field
+
+@Field BridgeEvent bridgeEvent
+
+json g.render(bridgeEvent, [includes:['name', 'dateTime', 'masterpointType', 'active']])
