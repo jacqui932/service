@@ -20,6 +20,8 @@ class WebsiteController {
 
     def eventEntryPlayerService
 
+    def bridgeEmailService
+
     def clubs() {
         respond clubService.search(new ClubFilter(request.JSON))
     }
@@ -45,4 +47,8 @@ class WebsiteController {
         }
         render results.groupBy({eventPlayer -> eventPlayer.eventEntry}).values() as JSON
     }
+
+//    def thankyou() {
+//        bridgeEmailService.afterEventReport()
+//    }
 }
