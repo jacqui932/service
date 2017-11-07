@@ -1,9 +1,10 @@
 package com.rhindon.bridge
 
-import com.google.common.collect.Iterables
 import com.rhindon.bridge.filter.*
 import com.rhindon.bridge.multitenant.BridgeEvent
+import com.rhindon.bridge.multitenant.EventEntry
 import com.rhindon.bridge.multitenant.EventEntryPlayer
+import org.hibernate.criterion.CriteriaSpecification
 
 class ReportController {
 
@@ -55,6 +56,17 @@ class ReportController {
         render(filename: "File eventPlayers.pdf",
                 view: "/report/eventPlayers",
                 model: [event: BridgeEvent.get(filter.event), eventEntries: eventEntryService.search(filter)])
+    }
+
+    def outstandingPaymentsReport() {
+        def results = EventEntry.createCriteria().list {
+            createAlias('event', 'e', CriteriaSpecification.LEFT_JOIN)
+            eq("fullyPaid", false)
+        }
+
+        render(filename: "File outstandingPayments.pdf",
+                view: "/report/outstandingPayments",
+                model: [data: results.groupBy({it.event})])
     }
 
     private def groupVL(eventEntryPlayers) {

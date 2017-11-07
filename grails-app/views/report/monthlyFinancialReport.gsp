@@ -11,7 +11,7 @@
 <h2 class="text-center">Financial Report - ${month} ${year}</h2>
 
 <g:each in="${data}" var="group">
-    <div class="container" style="page-break-inside:avoid;">
+    <div class="container">
 
         <h3>${group.key.name} (${group.value.size()} <g:if
                 test="${group.value.size() > 1}">entries</g:if><g:else>entry</g:else>)</h3>
@@ -27,7 +27,7 @@
             </thead>
             <tbody>
             <g:each in="${group.value}" var="entry">
-                <tr class="row">
+                <tr class="row" style="page-break-inside:avoid;">
                     <td>
                         <ul class="list-unstyled">
                             <g:each in="${entry.eventEntry.players}" var="player">
