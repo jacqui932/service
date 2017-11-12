@@ -3,4 +3,4 @@ import groovy.transform.Field
 
 @Field BridgeEvent bridgeEvent
 
-json g.render(bridgeEvent, [includes:['name', 'dateTime', 'masterpointType', 'active']])
+json g.render(bridgeEvent, [includes:['id', 'name', 'dateTime', 'masterpointType', 'active']])
