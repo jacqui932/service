@@ -1,7 +1,0 @@
-import com.rhindon.bridge.multitenant.Club
-
-model {
-    Iterable<Club> clubList
-}
-
-json tmpl.club(clubList ?: [])

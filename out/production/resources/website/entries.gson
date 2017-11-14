@@ -1,7 +1,0 @@
-import com.rhindon.bridge.multitenant.EventEntry
-
-model {
-    Iterable<EventEntry> eventEntryList
-}
-
-json tmpl.eventEntry(eventEntryList ?: [])

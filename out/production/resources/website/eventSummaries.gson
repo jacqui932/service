@@ -1,7 +1,0 @@
-import com.rhindon.bridge.multitenant.BridgeEvent
-
-model {
-  Iterable<BridgeEvent> bridgeEventList
-}
-
-json tmpl.summary(bridgeEventList ?: [])

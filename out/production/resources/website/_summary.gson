@@ -1,7 +1,0 @@
-import com.rhindon.bridge.multitenant.BridgeEvent
-
-model {
-    BridgeEvent bridgeEvent
-}
-
-json g.render(bridgeEvent, [includes:['id', 'name', 'dateTime', 'description', 'moreInfo', 'cost', 'masterpointType', 'competitionType']])

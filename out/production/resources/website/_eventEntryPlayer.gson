@@ -1,7 +1,0 @@
-import com.rhindon.bridge.multitenant.EventEntryPlayer
-
-model {
-    EventEntryPlayer eventEntryPlayer
-}
-
-json g.render(eventEntryPlayer, [includes:['id', 'players']])
