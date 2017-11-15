@@ -4,7 +4,7 @@ import com.rhindon.bridge.filter.*
 import com.rhindon.bridge.multitenant.BridgeEvent
 import com.rhindon.bridge.multitenant.EventEntry
 import com.rhindon.bridge.multitenant.EventEntryPlayer
-//import com.rhindon.bridge.view.EcclesCupPoints
+import com.rhindon.bridge.view.EcclesCupPoints
 import org.hibernate.criterion.CriteriaSpecification
 
 class ReportController {

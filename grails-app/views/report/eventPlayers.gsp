@@ -15,6 +15,9 @@
     <g:if test="${event.clubRepresentative}">
         <th width="30%">Club</th>
     </g:if>
+    <g:if test="${event.clubHeats}">
+        <th width="30%">Heat</th>
+    </g:if>
     <th width="70%">Comments</th>
     </thead>
     <tbody>
@@ -28,8 +31,13 @@
                     </g:each>
                 </ul>
             </td>
-            <td>${eventEntry.club.name}</td>
-            <td>${eventEntry.comments}</td>
+            <g:if test="${event.clubRepresentative}">
+                <td>${eventEntry.club.name}</td>
+            </g:if>
+            <g:if test="${event.clubHeats}">
+                <td>${eventEntry.heat.club.name}, ${eventEntry.heat.dateTime.format('d MMMM yyyy')}</td>
+            </g:if>
+            <td>${eventEntry.comments}  <g:if test="${eventEntry.paymentMethod == 'Pay On The Day'}"><br/>Has selected 'Pay On The Day'.</g:if></td>
         </tr>
     </g:each>
     </tbody>
