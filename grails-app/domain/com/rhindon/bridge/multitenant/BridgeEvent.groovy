@@ -22,6 +22,7 @@ class BridgeEvent {
     String moreInfo
     boolean allowPayOnTheDay
     boolean victorLudorum
+    BankAccount bankAccount
 
     static mapping = {
         entries cascade: 'all-delete-orphan'
@@ -39,5 +40,6 @@ class BridgeEvent {
         cost max: 10000, min: 0
         masterpointType nullable: false, inList: ['Local', 'Green', 'Blue']
         competitionType inList: ['pairs','teamsOfFour','teamsOfEight']
+        bankAccount nullable: false
     }
 }

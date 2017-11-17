@@ -1,0 +1,6 @@
+import com.rhindon.bridge.multitenant.BankAccount
+import groovy.transform.Field
+
+@Field BankAccount bankAccount
+
+json g.render(bankAccount, [includes:['bankAccountNumber', 'sortCode', 'chequePayee', 'chequeAddress']])

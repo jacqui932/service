@@ -74,8 +74,8 @@
                 Please either:
             </p>
             <ul>
-                <li>Send a cheque for <g:formatNumber number="${eventEntry.event.cost/100}" type="currency" currencyCode="GBP" /> made out to ${eventEntry.event.season.instance.chequePayee} to ${eventEntry.event.season.instance.chequeAddress} with a short note so we know which entry the payment is for</li>
-                <li>Make a bank transfer of <g:formatNumber number="${eventEntry.event.cost/100}" type="currency" currencyCode="GBP" /> to Acc No: ${eventEntry.event.season.instance.bankAccountNumber}, Sort Code: ${eventEntry.event.season.instance.sortCode} as soon as possible using your name as a reference</li>
+                <li>Send a cheque for <g:formatNumber number="${eventEntry.event.cost/100}" type="currency" currencyCode="GBP" /> made out to ${eventEntry.event.bankAccount.chequePayee} to ${eventEntry.event.bankAccount.chequeAddress} with a short note so we know which entry the payment is for</li>
+                <li>Make a bank transfer of <g:formatNumber number="${eventEntry.event.cost/100}" type="currency" currencyCode="GBP" /> to Acc No: ${eventEntry.event.bankAccount.bankAccountNumber}, Sort Code: ${eventEntry.event.bankAccount.sortCode} as soon as possible using your name as a reference</li>
             </ul>
         </g:if>
 

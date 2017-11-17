@@ -14,7 +14,7 @@ class EventEntryService {
 
     def saveEventEntry(EventEntry eventEntry) {
         eventEntry.save(failOnError: true)
-        bridgeEmailService.sendMail(eventEntry)
+//        bridgeEmailService.sendMail(eventEntry)
     }
 
     def search(EventEntryFilter filter) {
@@ -23,7 +23,7 @@ class EventEntryService {
             if (filter.event) {
                 eq("event", BridgeEvent.get(filter.event))
             }
-            if (filter.withdrawn) {
+            if (filter.withdrawn != null) {
                 eq("withdrawn", filter.withdrawn)
             }
         }

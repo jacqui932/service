@@ -25,18 +25,18 @@ class BootStrap {
                     domain: 'herts',
                     entryConfirmationEmailAddresses: 'jasnook@ntlworld.com',
                     heatUpdatedEmailAddresses: 'hbatournamentsec@gmail.com',
+                    entryConfirmationSignature: 'Jacqui and David Collier<br/>HBA Tournament Secretary',
+            ).save(failOnError: true)
+
+            // BANK ACCOUNT
+            new BankAccount(id: 1,
+                    name: 'Test Bank Account',
                     stripeApiKey: 'sk_test_bJBzUjniwqb1sageSnRVrX2L',
                     stripeApiTestKey: 'sk_test_bJBzUjniwqb1sageSnRVrX2L',
-                    countyLogo: 'http://assets.bridgeentry.com/herts.png',
-                    ebuLogo: 'http://assets.bridgeentry.com/ebu.png',
-                    stripeProductionMode: true,
-                    swallowOnlineCosts: true,
                     bankAccountNumber: '33945168',
                     sortCode: '30-93-89',
                     chequePayee: 'HBA Bridge',
-                    chequeAddress: '13 Sish Close, Stevenage, SG1 3LT',
-                    entryConfirmationSignature: 'Jacqui and David Collier<br/>HBA Tournament Secretary',
-                    bannerColour: '#006400'
+                    chequeAddress: '13 Sish Close, Stevenage, SG1 3LT'
             ).save(failOnError: true)
 
             // SEASONS
@@ -55,9 +55,11 @@ class BootStrap {
                     cost: 6000,
                     dateTime: new Date(2017 - 1900, 8, 12, 11, 00, 00),
                     active: true,
+                    allowPayOnTheDay: true,
                     clubRepresentative: true,
                     moreInfo: 'abcde',
-                    venue: Venue.get(1))
+                    venue: Venue.get(1),
+                    bankAccount: BankAccount.get(1))
                     .save(failOnError: true);
 
             new BridgeEvent(id: 2,
@@ -70,7 +72,8 @@ class BootStrap {
                     dateTime: new Date(2017 - 1900, 8, 12, 11, 00, 00),
                     active: true,
                     moreInfo: 'abcde',
-                    venue: Venue.get(1))
+                    venue: Venue.get(1),
+                    bankAccount: BankAccount.get(1))
                     .save(failOnError: true);
 
             // CLUB
@@ -106,13 +109,13 @@ class BootStrap {
                     ebuNumber: 12345,
                     eventEntry: EventEntry.get(1L),
                     firstName: 'First',
-                    lastName:  'Last').save(failOnError: true)
+                    lastName: 'Last').save(failOnError: true)
 
             new EventEntryPlayer(id: 2,
                     ebuNumber: 54321,
                     eventEntry: EventEntry.get(1L),
                     firstName: 'Another',
-                    lastName:  'Player').save(failOnError: true)
+                    lastName: 'Player').save(failOnError: true)
         }
     }
 

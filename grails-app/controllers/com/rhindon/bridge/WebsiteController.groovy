@@ -3,8 +3,12 @@ package com.rhindon.bridge
 import com.rhindon.bridge.filter.BridgeEventFilter
 import com.rhindon.bridge.filter.ClubFilter
 import com.rhindon.bridge.filter.HeatFilter
+import com.rhindon.bridge.filter.PlayerFilter
 import com.rhindon.bridge.multitenant.BridgeEvent
 import com.rhindon.bridge.multitenant.EventEntry
+import grails.gorm.transactions.Transactional
+
+import static org.springframework.http.HttpStatus.CREATED
 
 class WebsiteController {
 
@@ -18,7 +22,9 @@ class WebsiteController {
 
     def eventEntryService
 
-    def bridgeEmailService
+//    def bridgeEmailService
+
+    def playerService
 
     def clubs() {
         respond clubService.search(new ClubFilter(request.JSON))
@@ -38,6 +44,31 @@ class WebsiteController {
 
     def entries(Long id) {
         respond EventEntry.findAllByEvent(BridgeEvent.get(id), [fetch:[players:"join"]])
+    }
+
+    @Transactional
+    def saveEntry(EventEntry eventEntry) {
+        if (eventEntry == null) {
+            transactionStatus.setRollbackOnly()
+            notFound()
+            return
+        }
+
+        if (eventEntry.hasErrors()) {
+            transactionStatus.setRollbackOnly()
+            respond eventEntry.errors, view:'create'
+            return
+        }
+
+        eventEntry.players.forEach({
+            if (it.ebuNumber == null) {
+                def players = playerService.search(new PlayerFilter(firstName: it.firstName, lastName: it.lastName))
+                if (players.size() == 1) {
+                    it.ebuNumber = players.get(0).ebuNumber
+                }
+            }
+        })
+        respond eventEntryService.saveEventEntry(eventEntry)
     }
 
 //    def thankyou() {

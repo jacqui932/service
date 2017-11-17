@@ -1,8 +1,7 @@
 import com.rhindon.bridge.multitenant.Heat
+import groovy.transform.Field
 
-model {
-    Heat heat
-}
+@Field Heat heat
 
 json {
     id heat.id

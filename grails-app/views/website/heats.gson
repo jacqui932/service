@@ -1,7 +1,6 @@
 import com.rhindon.bridge.multitenant.Heat
+import groovy.transform.Field
 
-model {
-    Iterable<Heat> heatList
-}
+@Field Iterable<Heat> heatList
 
 json tmpl.heat(heatList ?: [])

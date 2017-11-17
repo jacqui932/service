@@ -1,7 +1,6 @@
 import com.rhindon.bridge.multitenant.BridgeEvent
+import groovy.transform.Field
 
-model {
-    BridgeEvent bridgeEvent
-}
+@Field BridgeEvent bridgeEvent
 
-json g.render(bridgeEvent, [includes:['id', 'name', 'dateTime', 'description', 'moreInfo', 'cost', 'masterpointType', 'competitionType']])
+json g.render(bridgeEvent, [includes: ['id', 'name', 'dateTime', 'description', 'moreInfo', 'cost', 'masterpointType', 'competitionType']])
