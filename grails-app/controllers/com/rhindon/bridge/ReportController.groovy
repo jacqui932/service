@@ -94,9 +94,9 @@ class ReportController {
 
         all.forEach({
             Player player = Player.findByEbuNumber(it.ebuNumber)
-            if (player.masterpointGrade.id < 53) {
+            if (player.masterpointGrade != null && player.masterpointGrade.id < 53) {
                 intermediate.add(it)
-                if (player.masterpointGrade.id < 7) {
+                if (player.masterpointGrade != null && player.masterpointGrade.id < 7) {
                     cadet.add(it)
                 }
             }

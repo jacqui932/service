@@ -1,0 +1,6 @@
+import com.rhindon.bridge.multitenant.Club
+import groovy.transform.Field
+
+@Field Iterable<Club> clubList
+
+json tmpl.club(clubList ?: [])
