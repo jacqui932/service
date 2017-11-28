@@ -9,4 +9,6 @@ json {
     club heat.club.name
     event heat.event.name
     qualifiers heat.heatQualifiers.size()
+    entries heat.eventEntries.size()
+    unmappedEntries heat.heatQualifiers.findAll({it.eventEntry == null}).size()
 }

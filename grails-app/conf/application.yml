@@ -91,7 +91,7 @@ grails:
                 staticparts: none
     plugin:
         wkhtmltopdf:
- #           binary: C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe
+          #  binary: C:/Program Files/wkhtmltopdf/bin/wkhtmltopdf.exe
             binary: /usr/local/bin/wkhtmltopdf
         awssdk:
             region: us-west-2
