@@ -1,0 +1,10 @@
+import com.rhindon.bridge.PlayerRankCode
+import groovy.transform.Field
+
+@Field PlayerRankCode playerRankCode
+
+json {
+    grade playerRankCode.rankCode.name
+    startDate playerRankCode.startDate
+    endDate playerRankCode.endDate
+}

@@ -1,0 +1,12 @@
+import com.rhindon.bridge.Player
+import groovy.transform.Field
+
+@Field Player player
+
+json {
+    ebuNumber player.ebuNumber
+    firstName player.firstName
+    lastName player.lastName
+    active player.active
+    grades tmpl.grade(player.playerRankCodes ?: [])
+}

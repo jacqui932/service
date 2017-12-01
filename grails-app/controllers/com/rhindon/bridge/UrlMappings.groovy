@@ -39,5 +39,7 @@ class UrlMappings {
         post "/website/entry(.$format)?"(controller: "website", action: "saveEntry")
 
         post "/website/thankyou"(controller: "website", action: "thankyou")
+
+        get "/player/lookup/$ebuNumber(.$format)?"(controller: "player", action: "lookup")
     }
 }

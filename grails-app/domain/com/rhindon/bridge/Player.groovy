@@ -5,12 +5,14 @@ import grails.rest.*
 @Resource(readOnly = true, formats = ['json'])
 class Player {
 
+    static hasMany = [playerRankCodes: PlayerRankCode]
+
     Long ebuNumber
     String firstName
     String lastName
     String countyOfAffiliation
     String email
-    MasterpointGrade masterpointGrade
+    boolean  active
 
     static constraints = {
         firstName blank: false
@@ -18,6 +20,5 @@ class Player {
         ebuNumber nullable: true
         countyOfAffiliation nullable: true
         email nullable: true
-        masterpointGrade nullable: true
     }
 }
