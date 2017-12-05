@@ -4,7 +4,6 @@ import com.rhindon.bridge.filter.*
 import com.rhindon.bridge.multitenant.BridgeEvent
 import com.rhindon.bridge.multitenant.EventEntry
 import com.rhindon.bridge.multitenant.EventEntryPlayer
-import com.rhindon.bridge.view.EcclesCupPoints
 import org.hibernate.criterion.CriteriaSpecification
 
 class ReportController {
@@ -70,11 +69,11 @@ class ReportController {
                 model: [data: results.groupBy({ it.event })])
     }
 
-    def ecclesCupPointsReport() {
-        render(filename: "File ecclesCupPoints.pdf",
-                view: "/report/ecclesCupPoints",
-                model: [data: EcclesCupPoints.all.groupBy { it.clubName }])
-    }
+//    def ecclesCupPointsReport() {
+//        render(filename: "File ecclesCupPoints.pdf",
+//                view: "/report/ecclesCupPoints",
+//                model: [data: EcclesCupPoints.all.groupBy { it.clubName }])
+//    }
 
     private def groupVL(eventEntryPlayers) {
         eventEntryPlayers.groupBy({ it -> [firstName: it.firstName, lastName: it.lastName, ebuNumber: it.ebuNumber] })
