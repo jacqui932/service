@@ -20,6 +20,8 @@ class ReportController {
 
     def financialTransactionService
 
+    def bridgeEmailService
+
     def monthlyFinancialReport(FinancialTransactionFilter filter) {
         render(filename: "File report_${filter.month}${filter.year}.pdf",
                 view: "/report/monthlyFinancialReport",
@@ -59,14 +61,15 @@ class ReportController {
     }
 
     def outstandingPaymentsReport() {
-        def results = EventEntry.createCriteria().list {
-            createAlias('event', 'e', CriteriaSpecification.LEFT_JOIN)
-            eq("fullyPaid", false)
-        }
-
-        render(filename: "File outstandingPayments.pdf",
-                view: "/report/outstandingPayments",
-                model: [data: results.groupBy({ it.event })])
+        bridgeEmailService.sendHeatQualifier()
+//        def results = EventEntry.createCriteria().list {
+//            createAlias('event', 'e', CriteriaSpecification.LEFT_JOIN)
+//            eq("fullyPaid", false)
+//        }
+//
+//        render(filename: "File outstandingPayments.pdf",
+//                view: "/report/outstandingPayments",
+//                model: [data: results.groupBy({ it.event })])
     }
 
 //    def ecclesCupPointsReport() {
