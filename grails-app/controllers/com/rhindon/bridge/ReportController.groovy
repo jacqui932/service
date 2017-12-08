@@ -4,7 +4,6 @@ import com.rhindon.bridge.filter.*
 import com.rhindon.bridge.multitenant.BridgeEvent
 import com.rhindon.bridge.multitenant.EventEntry
 import com.rhindon.bridge.multitenant.EventEntryPlayer
-import com.rhindon.bridge.view.EcclesCupPoints
 import org.hibernate.criterion.CriteriaSpecification
 
 class ReportController {
@@ -20,6 +19,8 @@ class ReportController {
     def eventEntryPlayerService
 
     def financialTransactionService
+
+    def bridgeEmailService
 
     def monthlyFinancialReport(FinancialTransactionFilter filter) {
         render(filename: "File report_${filter.month}${filter.year}.pdf",
@@ -60,21 +61,22 @@ class ReportController {
     }
 
     def outstandingPaymentsReport() {
-        def results = EventEntry.createCriteria().list {
-            createAlias('event', 'e', CriteriaSpecification.LEFT_JOIN)
-            eq("fullyPaid", false)
-        }
-
-        render(filename: "File outstandingPayments.pdf",
-                view: "/report/outstandingPayments",
-                model: [data: results.groupBy({ it.event })])
+        bridgeEmailService.sendHeatQualifier()
+//        def results = EventEntry.createCriteria().list {
+//            createAlias('event', 'e', CriteriaSpecification.LEFT_JOIN)
+//            eq("fullyPaid", false)
+//        }
+//
+//        render(filename: "File outstandingPayments.pdf",
+//                view: "/report/outstandingPayments",
+//                model: [data: results.groupBy({ it.event })])
     }
 
-    def ecclesCupPointsReport() {
-        render(filename: "File ecclesCupPoints.pdf",
-                view: "/report/ecclesCupPoints",
-                model: [data: EcclesCupPoints.all.groupBy { it.clubName }])
-    }
+//    def ecclesCupPointsReport() {
+//        render(filename: "File ecclesCupPoints.pdf",
+//                view: "/report/ecclesCupPoints",
+//                model: [data: EcclesCupPoints.all.groupBy { it.clubName }])
+//    }
 
     private def groupVL(eventEntryPlayers) {
         eventEntryPlayers.groupBy({ it -> [firstName: it.firstName, lastName: it.lastName, ebuNumber: it.ebuNumber] })

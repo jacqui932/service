@@ -1,12 +1,29 @@
 package com.rhindon.bridge
 
+import com.agorapulse.awssdk.AwsSdkUtils
+import com.amazonaws.AmazonClientException
+import com.amazonaws.AmazonServiceException
+import com.amazonaws.AmazonWebServiceClient
+import com.amazonaws.regions.RegionUtils
+import com.amazonaws.services.simpleemail.AmazonSimpleEmailServiceClient
+import com.amazonaws.services.simpleemail.model.*
 import com.rhindon.bridge.multitenant.EventEntry
-import grails.gorm.transactions.Transactional
+import com.rhindon.bridge.multitenant.HeatQualifier
+import grails.gsp.PageRenderer
+import org.springframework.transaction.annotation.Transactional
+
+import static com.agorapulse.awssdk.ses.AwsSdkSesEmailDeliveryStatus.*
 
 @Transactional
 class BridgeEmailService {
 
+    String templatePath = '/email'
+
+    AmazonWebServiceClient client = new AmazonSimpleEmailServiceClient(AwsSdkUtils.clientConfigurationWithMap([:])).withRegion(RegionUtils.getRegion('us-west-2'))
+
     def amazonSESTemplateService
+
+    PageRenderer groovyPageRenderer
 
     def sendMail(EventEntry eventEntry) {
         sendPlayerEmail(eventEntry)
@@ -20,43 +37,6 @@ class BridgeEmailService {
                 sendEventConfirmationEmail(eventEntry, item)
             }
         }
-    }
-
-    def afterEventReport() {
-        def emails = ['Janet': 'jane.akers@tiscali.co.uk',
-                      'Susan': 'susancarolarnold@yahoo.co.uk',
-                      'Kathleen': 'john_kath_barnes@hotmail.com',
-                      'Bob': 'robert.bastock@gmail.com',
-                      'Richard': 'jarbean@ntlworld.com',
-                      'Rowena': 'rowena.birdsey@btinternet.com',
-                      'Patricia': 'pbon1947@gmail.com',
-                      'Val': 'v-brown@tiscali.co.uk',
-                      'John and Jan': 'john@burnell.me.uk',
-                      'Patricia': 'patriciacahalane@yahoo.co.uk',
-                      'Wendy': 'wendycorns@fsmail.net',
-                      'Rosemary': 'rosemary.marks@ntlworld.com',
-                      'Carol': 'edrichca@gmail.com',
-                      'Margaret': 'davcapsuk@aol.com',
-                      'Valerie': 'valerie.fullforth@ntlworld.com',
-                      'Robert': 'r.girvan@ntlworld.com',
-                      'Peter': 'peter.gore162@btinternet.com',
-                      'Christine': 'christine.m.gray@btinternet.com',
-                      'Judy': 'judyhowlett@yahoo.co.uk',
-                      'Gill': 'gill.humby@live.co.uk',
-                      'Kathy': 'glandkl@virginmedia.com',
-                      'Christine': 'christinenewcombe21@hotmail.com',
-                      'Liz': 'orrocke@googlemail.com',
-                      'Marcia': 'marcia.music1@gmail.com',
-                      'Robert': 'robert.scane@googlemail.com',
-                      'Merv': 'mervandjoyce@hotmail.com',
-                      'Frances': 'f.street@sky.com',
-                      'Stephen': 'steve.sj.welch@talk21.com',
-                      'Jean': 'jean-burr@hotmail.co.uk',
-                      'Jacqui' : 'jasnook@ntlworld.com']
-
-        emails.each {name, email ->
-                sendThankyouEmail(name, email)
-        };
     }
 
     private sendThankyouEmail(name, email) {
@@ -89,5 +69,69 @@ class BridgeEmailService {
             model eeModel
             templateName 'tsEntryConfirmation'
         }
+    }
+
+    def sendHeatQualifier() {
+        HeatQualifier heatQualifier = HeatQualifier.get(1)
+        send(['jasnook@ntlworld.com', 'hbatournamentsec@gmail.com'], "Well done - you have qualified for the ${heatQualifier.heat.event.name}",
+                renderHtmlForTemplate([heatQualifier: heatQualifier], 'heatQualifier'), 'hbatournamentsec@gmail.com', 'hbatournamentsec@gmail.com')
+    }
+
+    String renderHtmlForTemplate(Map model, String templateName) {
+        def t = "${templatePath}/${templateName}" as String
+        groovyPageRenderer.render(
+                model: model,
+                template: t
+        )
+    }
+
+    /**
+     *
+     * @param destinationEmail
+     * @param subject
+     * @param htmlBody
+     * @param sourceEmail
+     * @param replyToEmail
+     * @return 1 if successful, 0 if not sent, -1 if blacklisted
+     */
+    @SuppressWarnings(['LineLength', 'ElseBlockBraces'])
+    int send(List<String> destinationEmail,
+             String subject,
+             String htmlBody,
+             String sourceEmail = '',
+             String replyToEmail = '') {
+        int statusId = STATUS_NOT_DELIVERED
+        if ( !destinationEmail ) {
+            return statusId
+        }
+
+        Destination destination = new Destination(destinationEmail)
+        Content messageSubject = new Content(subject)
+        Body messageBody = new Body().withHtml(new Content(htmlBody))
+        Message message = new Message(messageSubject, messageBody)
+        try {
+            SendEmailRequest sendEmailRequest = new SendEmailRequest(sourceEmail, destination, message)
+            if ( replyToEmail ) {
+                sendEmailRequest.replyToAddresses = [replyToEmail]
+            }
+            (client as AmazonSimpleEmailServiceClient).sendEmail(sendEmailRequest)
+            statusId = STATUS_DELIVERED
+        } catch (AmazonServiceException exception) {
+
+            if (exception.message.find('Address blacklisted')) {
+                log.debug "Address blacklisted destinationEmail=$destinationEmail"
+                statusId = STATUS_BLACKLISTED
+
+            } else if (exception.message.find('Missing final')) {
+                log.warn "An amazon service exception was caught while sending email: destinationEmail=$destinationEmail, sourceEmail=$sourceEmail, replyToEmail=$replyToEmail, subject=$subject"
+
+            } else {
+                log.warn 'An amazon service exception was caught while send +ng email' + exception.message
+            }
+
+        } catch (AmazonClientException exception) {
+            log.warn 'An amazon client exception was caught while sending email' + exception.message
+        }
+        statusId
     }
 }

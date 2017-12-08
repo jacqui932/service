@@ -21,4 +21,8 @@ class Player {
         countyOfAffiliation nullable: true
         email nullable: true
     }
+
+    static mapping = {
+        playerRankCodes sort: 'startDate', order: 'desc'
+    }
 }

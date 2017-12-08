@@ -29,7 +29,7 @@ class UrlMappings {
         post "/report/eventPlayersReport.$format"(controller: "report", action: "eventPlayersReport")
         post "/report/victorLudorumReport.$format"(controller: "report", action: "victorLudorumReport")
         post "/report/outstandingPaymentsReport.$format"(controller: "report", action: "outstandingPaymentsReport")
-        post "/report/ecclesCupPointsReport.$format"(controller: "report", action: "ecclesCupPointsReport")
+//        post "/report/ecclesCupPointsReport.$format"(controller: "report", action: "ecclesCupPointsReport")
 
         post "/website/eventSummaries.($format)?"(controller: "website", action: "eventSummaries")
         post "/website/clubs.($format)?"(controller: "website", action: "clubs")
