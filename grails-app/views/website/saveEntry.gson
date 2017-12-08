@@ -5,6 +5,7 @@ import groovy.transform.Field
 
 json {
     id eventEntry.id
+    eventId eventEntry.event.id
     paymentMethod eventEntry.paymentMethod
     zeroCost eventEntry.event.cost.equals(0)
     players tmpl.eventEntryPlayer(eventEntry.players)

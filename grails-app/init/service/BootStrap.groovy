@@ -48,7 +48,7 @@ class BootStrap {
             //EVENT
             new BridgeEvent(id: 1,
                     season: Season.get(1),
-                    name: 'Test Event',
+                    name: 'Event With Club',
                     masterpointType: 'Local',
                     competitionType: 'pairs',
                     description: 'xxx',
@@ -64,7 +64,22 @@ class BootStrap {
 
             new BridgeEvent(id: 2,
                     season: Season.get(1),
-                    name: 'Test Event 2',
+                    name: 'Event With Heats',
+                    masterpointType: 'Local',
+                    competitionType: 'pairs',
+                    description: 'yyy',
+                    cost: 6000,
+                    dateTime: new Date(2017 - 1900, 8, 12, 11, 00, 00),
+                    active: true,
+                    moreInfo: 'abcde',
+                    clubHeats: true,
+                    venue: Venue.get(1),
+                    bankAccount: BankAccount.get(1))
+                    .save(failOnError: true);
+
+            new BridgeEvent(id: 3,
+                    season: Season.get(1),
+                    name: 'Standard Event',
                     masterpointType: 'Local',
                     competitionType: 'pairs',
                     description: 'yyy',

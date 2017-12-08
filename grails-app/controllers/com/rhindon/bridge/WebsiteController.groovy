@@ -68,7 +68,8 @@ class WebsiteController {
                 }
             }
         })
-        respond eventEntryService.saveEventEntry(eventEntry)
+        eventEntryService.saveEventEntry(eventEntry)
+        respond eventEntry
     }
 
 //    def thankyou() {
