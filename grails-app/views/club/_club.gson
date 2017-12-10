@@ -1,6 +1,0 @@
-import com.rhindon.bridge.multitenant.Club
-import groovy.transform.Field
-
-@Field Club club
-
-json g.render(club, [includes:['id', 'name', 'address', 'active']])

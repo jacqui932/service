@@ -4,6 +4,7 @@ import groovy.transform.Field
 @Field EventSummary eventSummary
 
 json {
+    id eventSummary.id
     name eventSummary.name
     masterpointType eventSummary.masterpointType
     active eventSummary.active

@@ -1,6 +1,6 @@
-import com.rhindon.bridge.multitenant.Club
+import com.rhindon.bridge.view.ClubQualifiersSummary
 import groovy.transform.Field
 
-@Field Iterable<Club> clubList
+@Field Iterable<ClubQualifiersSummary> clubQualifiersSummaryList
 
-json tmpl.club(clubList ?: [])
+json tmpl.clubQualifiersSummary(clubQualifiersSummaryList ?: [])

@@ -1,0 +1,6 @@
+import com.rhindon.bridge.view.ClubQualifiersSummary
+import groovy.transform.Field
+
+@Field ClubQualifiersSummary clubQualifiersSummary
+
+json g.render(clubQualifiersSummary)
