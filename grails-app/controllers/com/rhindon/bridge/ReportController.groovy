@@ -61,15 +61,15 @@ class ReportController {
     }
 
     def outstandingPaymentsReport() {
-        bridgeEmailService.sendHeatQualifier()
-//        def results = EventEntry.createCriteria().list {
-//            createAlias('event', 'e', CriteriaSpecification.LEFT_JOIN)
-//            eq("fullyPaid", false)
-//        }
-//
-//        render(filename: "File outstandingPayments.pdf",
-//                view: "/report/outstandingPayments",
-//                model: [data: results.groupBy({ it.event })])
+//        bridgeEmailService.sendHeatQualifier()
+        def results = EventEntry.createCriteria().list {
+            createAlias('event', 'e', CriteriaSpecification.LEFT_JOIN)
+            eq("fullyPaid", false)
+        }
+
+        render(filename: "File outstandingPayments.pdf",
+                view: "/report/outstandingPayments",
+                model: [data: results.groupBy({ it.event })])
     }
 
 //    def ecclesCupPointsReport() {

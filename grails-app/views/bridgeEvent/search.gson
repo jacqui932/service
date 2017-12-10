@@ -1,0 +1,6 @@
+import com.rhindon.bridge.view.EventSummary
+import groovy.transform.Field
+
+@Field List<EventSummary> eventSummaryList
+
+json tmpl.eventSummary(eventSummaryList ?: [])

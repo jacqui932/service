@@ -1,6 +1,15 @@
-import com.rhindon.bridge.multitenant.BridgeEvent
+import com.rhindon.bridge.view.EventSummary
 import groovy.transform.Field
 
-@Field BridgeEvent bridgeEvent
+@Field EventSummary eventSummary
 
-json g.render(bridgeEvent, [includes:['id', 'name', 'dateTime', 'masterpointType', 'active']])
+json {
+    name eventSummary.name
+    masterpointType eventSummary.masterpointType
+    active eventSummary.active
+    dateTime eventSummary.dateTime
+    season eventSummary.season.id
+    entries eventSummary.entries
+    payCount eventSummary.dateTime.after(new Date()) ? eventSummary.unpaidPayInAdvanceCount
+            : eventSummary.unpaidPayInAdvanceCount + eventSummary.unpaidPayOnTheDayCount
+}
