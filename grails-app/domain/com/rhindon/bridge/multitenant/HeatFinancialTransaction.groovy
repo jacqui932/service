@@ -1,12 +1,11 @@
 package com.rhindon.bridge.multitenant
 
-import grails.gorm.MultiTenant
 import grails.rest.Resource
 
 @Resource(readOnly = false, formats = ['json'])
-class FinancialTransaction {
+class HeatFinancialTransaction {
 
-    EventEntry eventEntry
+    Heat heat
     String paymentMethod
     BigDecimal amount
     Date datePaid

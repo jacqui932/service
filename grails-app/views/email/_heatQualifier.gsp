@@ -19,7 +19,7 @@
             Dear <g:each in="${heatQualifier.heatQualifierPlayers}" var="heatQualifierPlayer">${heatQualifierPlayer.firstName}, </g:each>
         </p>
         <h3>
-            Congratulations!!!
+            Congratulations!
         </h3>
         <p>
             You have qualified for the '${heatQualifier.heat.event.name}' due to your great finishing position in the heat at ${heatQualifier.heat.club.name} on ${heatQualifier.heat.dateTime.format('d MMMM yyyy')}.
@@ -35,7 +35,7 @@
         </p>
         <br/>
         <p>
-            We look forward to seeing you at the event,
+            We hope to see you at the event,
         </p>
         <p>
             ${raw(heatQualifier.heat.event.season.instance.entryConfirmationSignature)}

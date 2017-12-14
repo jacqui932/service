@@ -2,6 +2,7 @@ package com.rhindon.bridge.view
 
 class ClubQualifiersSummary {
 
+    Long clubId
     String name
     boolean active
     Long numHeatsWithoutQualifiers
@@ -10,5 +11,9 @@ class ClubQualifiersSummary {
     static constraints = {
         sort "name"
         version false
+    }
+
+    static mapping = {
+        id name: "clubId"
     }
 }
