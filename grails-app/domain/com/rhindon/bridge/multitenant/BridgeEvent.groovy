@@ -23,6 +23,7 @@ class BridgeEvent {
     boolean allowPayOnTheDay
     boolean victorLudorum
     BankAccount bankAccount
+    String heatQualifierRule
 
     static mapping = {
         entries cascade: 'all-delete-orphan'
@@ -41,5 +42,6 @@ class BridgeEvent {
         masterpointType nullable: false, inList: ['Local', 'Green', 'Blue']
         competitionType inList: ['pairs','teamsOfFour','teamsOfEight']
         bankAccount nullable: false
+        heatQualifierRule inList: ['Top Half', 'Top Third']
     }
 }
