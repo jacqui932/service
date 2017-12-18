@@ -2,6 +2,7 @@ package com.rhindon.bridge
 
 import com.rhindon.bridge.filter.HeatFilter
 import com.rhindon.bridge.multitenant.Heat
+import com.rhindon.bridge.view.HeatQualifiersSummary
 import grails.rest.RestfulController
 
 class HeatController extends RestfulController<Heat> {
@@ -16,5 +17,9 @@ class HeatController extends RestfulController<Heat> {
 
     def search() {
         respond heatService.search(new HeatFilter(request.JSON))
+    }
+
+    def clubSummaries(Long clubId) {
+        respond HeatQualifiersSummary.findAllByClubId(clubId)
     }
 }

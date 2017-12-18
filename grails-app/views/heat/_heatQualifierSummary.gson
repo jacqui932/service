@@ -1,0 +1,6 @@
+import com.rhindon.bridge.view.HeatQualifiersSummary
+import groovy.transform.Field
+
+@Field HeatQualifiersSummary heatQualifiersSummary
+
+json g.render(heatQualifiersSummary)
