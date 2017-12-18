@@ -130,7 +130,7 @@ class HeatController extends RestfulController<Heat> {
         def records = doc.documentElement
 
         use(DOMCategory) {
-            records.USEBIO.EVENT
+            respond records.USEBIO.EVENT
         }
     }
 }
