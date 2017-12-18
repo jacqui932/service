@@ -12,7 +12,10 @@ import com.rhindon.bridge.multitenant.HeatQualifier
 import grails.gsp.PageRenderer
 import org.springframework.transaction.annotation.Transactional
 
+import java.util.stream.Collectors
+
 import static com.agorapulse.awssdk.ses.AwsSdkSesEmailDeliveryStatus.*
+import static org.apache.commons.lang.StringUtils.isNotEmpty
 
 @Transactional
 class BridgeEmailService {
@@ -71,10 +74,35 @@ class BridgeEmailService {
         }
     }
 
+    private static getEmailAddresses(HeatQualifier heatQualifier) {
+        heatQualifier.heatQualifierPlayers.stream().map({Player.findByEbuNumber(it.ebuNumber).email})
+                .filter({it != null && isNotEmpty(it)}).distinct().collect(Collectors.toList())
+    }
+
     def sendHeatQualifier() {
-        HeatQualifier heatQualifier = HeatQualifier.get(1)
-        send(['jasnook@ntlworld.com', 'hbatournamentsec@gmail.com'], "Well done - you have qualified for the ${heatQualifier.heat.event.name}",
-                renderHtmlForTemplate([heatQualifier: heatQualifier], 'heatQualifier'), 'hbatournamentsec@gmail.com', 'hbatournamentsec@gmail.com')
+        HeatQualifier heatQualifier = HeatQualifier.get(124);
+
+//        heatQualifiers.each {
+            send(getEmailAddresses(heatQualifier), "Well done - you have qualified for the ${heatQualifier.heat.event.name}",
+                    renderHtmlForTemplate([heatQualifier: heatQualifier], 'heatQualifier'), 'hbatournamentsec@gmail.com', 'hbatournamentsec@gmail.com')
+//        }
+    }
+
+    def sendDesFlockhart() {
+//        def emailsTo = [
+//                [name: 'Jacqui', email: 'jasnook@ntlworld.com']
+//        ]
+        def emailsTo = [
+                [name: 'Ian', email: 'greig.ian@outlook.com'],
+                [name: 'Stan', email: 'tarastan30@gmail.com'],
+                [name: 'John', email: 'jmat261807@aol.com'],
+                [name: 'Roger', email: 'rogeredmonds2@gmail.com'],
+                [name: 'Susan', email: 'wbbcemail@gmail.com'],
+                [name: 'Alan', email: 'ajwo56@hotmail.com']
+        ]
+        emailsTo.each {
+            send([it.email], "Desmond Flockhart Trophy", renderHtmlForTemplate([name: it.name], 'desFlockhart'), 'hbatournamentsec@gmail.com', 'hbatournamentsec@gmail.com')
+        }
     }
 
     String renderHtmlForTemplate(Map model, String templateName) {
@@ -105,7 +133,7 @@ class BridgeEmailService {
             return statusId
         }
 
-        Destination destination = new Destination(destinationEmail)
+        Destination destination = new Destination().withToAddresses(destinationEmail).withBccAddresses('hbatournamentsec@gmail.com')
         Content messageSubject = new Content(subject)
         Body messageBody = new Body().withHtml(new Content(htmlBody))
         Message message = new Message(messageSubject, messageBody)
