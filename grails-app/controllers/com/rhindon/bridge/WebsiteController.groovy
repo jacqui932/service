@@ -8,8 +8,6 @@ import com.rhindon.bridge.multitenant.BridgeEvent
 import com.rhindon.bridge.multitenant.EventEntry
 import grails.gorm.transactions.Transactional
 
-import static org.springframework.http.HttpStatus.CREATED
-
 class WebsiteController {
 
     static responseFormats = ['json']
@@ -39,7 +37,7 @@ class WebsiteController {
     }
 
     def event(Long id) {
-        respond BridgeEvent.get(id)
+        respond BridgeEvent.findById(id, [fetch:[venue:"join"]])
     }
 
     def entries(Long id) {

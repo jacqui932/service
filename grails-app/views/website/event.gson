@@ -3,6 +3,6 @@ import groovy.transform.Field
 
 @Field BridgeEvent bridgeEvent
 
-json g.render(bridgeEvent, [excludes: ['entries', 'heats', 'season', 'venue', 'victorLudorum',
+json g.render(bridgeEvent, [excludes: ['entries', 'heats', 'season', 'victorLudorum',
                                        'moreInfo', 'entryConfirmationEmailAddresses', 'description',
                                        'dateTime', 'active']])
