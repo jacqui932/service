@@ -1,0 +1,6 @@
+import com.rhindon.bridge.multitenant.HeatQualifierPlayer
+import groovy.transform.Field
+
+@Field HeatQualifierPlayer heatQualifierPlayer
+
+json g.render(heatQualifierPlayer, [includes:['ebuNumber', 'firstName', 'lastName']])

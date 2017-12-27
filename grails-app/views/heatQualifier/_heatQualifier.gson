@@ -1,0 +1,10 @@
+import com.rhindon.bridge.multitenant.HeatQualifier
+import groovy.transform.Field
+
+@Field HeatQualifier heatQualifier
+
+json {
+    id heatQualifier.id
+    players tmpl.heatQualifierPlayer(heatQualifier.heatQualifierPlayers)
+    eventEntryId heatQualifier.eventEntryId
+}

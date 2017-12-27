@@ -19,6 +19,7 @@ class UrlMappings {
         get "/charge/onlineChargeAmount/$id"(controller: "charge", action: "onlineChargeAmount")
 
         get "/heat/clubSummaries/$clubId"(controller: "heat", action: "clubSummaries")
+        get "/heatQualifier/search/$heatId"(controller: "heatQualifier", action: "search")
 
         get "/asset/css"(controller: "asset", action: "css")
         get "/asset/logo"(controller: "asset", action: "logo")

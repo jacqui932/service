@@ -1,0 +1,6 @@
+import com.rhindon.bridge.multitenant.HeatQualifier
+import groovy.transform.Field
+
+@Field Iterable<HeatQualifier> heatQualifierList
+
+json tmpl.heatQualifier(heatQualifierList ?: [])
