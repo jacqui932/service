@@ -20,6 +20,8 @@ class UrlMappings {
 
         get "/heat/clubSummaries/$clubId"(controller: "heat", action: "clubSummaries")
         get "/heatQualifier/search/$heatId"(controller: "heatQualifier", action: "search")
+        get "/heatQualifier/unmatched/$heatId"(controller: "heatQualifier", action: "unmatched")
+        post "/heatQualifier/link"(controller: "heatQualifier", action: "link")
 
         get "/asset/css"(controller: "asset", action: "css")
         get "/asset/logo"(controller: "asset", action: "logo")

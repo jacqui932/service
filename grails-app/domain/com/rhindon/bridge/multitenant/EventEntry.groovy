@@ -5,7 +5,10 @@ import grails.rest.Resource
 @Resource(readOnly = false, formats = ['json'])
 class EventEntry {
 
-    static hasMany = [players:EventEntryPlayer, financialTransactions:FinancialTransaction]
+    static hasMany = [
+            players:EventEntryPlayer,
+            financialTransactions:FinancialTransaction,
+            heatQualifiers:HeatQualifier]
 
     BridgeEvent event
     String name
