@@ -1,0 +1,6 @@
+import com.rhindon.bridge.multitenant.EventEntry
+import groovy.transform.Field
+
+@Field Iterable<EventEntry> eventEntryList
+
+json tmpl.eventEntrySummary(eventEntryList ?: [])

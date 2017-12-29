@@ -1,0 +1,11 @@
+import com.rhindon.bridge.multitenant.EventEntry
+import groovy.transform.Field
+
+@Field EventEntry eventEntry
+
+json {
+    id eventEntry.id
+    withdrawn eventEntry.withdrawn
+    fullyPaid eventEntry.fullyPaid
+    players tmpl.eventEntryPlayer(eventEntry.players)
+}

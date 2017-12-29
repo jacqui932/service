@@ -15,6 +15,7 @@ class UrlMappings {
         "404"(view: '/notFound')
 
         post "/$controller/search(.$format)?"(action: "search")
+        post "/eventEntry/summary(.$format)?"(controller: "eventEntry", action: "summary")
 
         get "/charge/onlineChargeAmount/$id"(controller: "charge", action: "onlineChargeAmount")
 

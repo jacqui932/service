@@ -16,7 +16,7 @@ class EventEntryController extends RestfulController<EventEntry> {
         super(EventEntry)
     }
 
-    def search() {
+    def summary() {
         respond eventEntryService.search(new EventEntryFilter(request.JSON))
     }
 }

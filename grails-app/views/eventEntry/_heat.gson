@@ -1,0 +1,10 @@
+import com.rhindon.bridge.multitenant.Heat
+import groovy.transform.Field
+
+@Field Heat heat
+
+json {
+    id heat.id
+    dateTime heat.dateTime
+    club heat.club.name
+}

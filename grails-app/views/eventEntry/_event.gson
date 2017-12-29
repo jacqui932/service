@@ -1,0 +1,8 @@
+import com.rhindon.bridge.multitenant.BridgeEvent
+import groovy.transform.Field
+
+@Field BridgeEvent event
+
+json {
+    clubRepresentative event.clubRepresentative
+}

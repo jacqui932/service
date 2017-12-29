@@ -1,0 +1,13 @@
+import com.rhindon.bridge.multitenant.FinancialTransaction
+import groovy.transform.Field
+
+@Field FinancialTransaction financialTransaction
+
+json {
+    id financialTransaction.id
+    paymentMethod financialTransaction.paymentMethod
+    amount financialTransaction.amount
+    datePaid financialTransaction.datePaid
+    dateCleared financialTransaction.dateCleared
+    paymentRef financialTransaction.paymentRef
+}
