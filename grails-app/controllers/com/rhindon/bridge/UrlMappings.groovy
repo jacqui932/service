@@ -20,6 +20,7 @@ class UrlMappings {
         get "/charge/onlineChargeAmount/$id"(controller: "charge", action: "onlineChargeAmount")
 
         get "/heat/clubSummaries/$clubId"(controller: "heat", action: "clubSummaries")
+        get "/heat/eventSummaries/$eventId"(controller: "heat", action: "eventSummaries")
         get "/heatQualifier/search/$heatId"(controller: "heatQualifier", action: "search")
         get "/heatQualifier/unmatched/$heatId"(controller: "heatQualifier", action: "unmatched")
         post "/heatQualifier/link"(controller: "heatQualifier", action: "link")

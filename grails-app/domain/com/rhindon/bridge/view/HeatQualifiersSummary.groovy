@@ -7,6 +7,7 @@ class HeatQualifiersSummary {
     Date heatDate
     Long eventId
     Long seasonId
+    String clubName
     String eventName
     Long numQualifiers
     Long numEntries

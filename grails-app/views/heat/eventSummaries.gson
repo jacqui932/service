@@ -1,0 +1,6 @@
+import com.rhindon.bridge.view.HeatQualifiersSummary
+import groovy.transform.Field
+
+@Field Iterable<HeatQualifiersSummary> heatQualifiersSummaryList
+
+json tmpl.heatQualifierSummary(heatQualifiersSummaryList ?: [])

@@ -34,4 +34,8 @@ class HeatController extends RestfulController<Heat> {
     def clubSummaries(Long clubId) {
         respond HeatQualifiersSummary.findAllByClubIdAndSeasonId(clubId, 2)
     }
+
+    def eventSummaries(Long eventId) {
+        respond HeatQualifiersSummary.findAllByEventIdAndSeasonId(eventId, 2)
+    }
 }
