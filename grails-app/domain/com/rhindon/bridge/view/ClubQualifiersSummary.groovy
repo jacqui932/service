@@ -3,6 +3,7 @@ package com.rhindon.bridge.view
 class ClubQualifiersSummary {
 
     Long clubId
+    Long seasonId
     String name
     boolean active
     Long numHeatsWithoutQualifiers

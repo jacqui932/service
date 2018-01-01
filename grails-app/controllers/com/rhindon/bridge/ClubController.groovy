@@ -13,6 +13,6 @@ class ClubController extends RestfulController<Club> {
     }
 
     def search() {
-        respond ClubQualifiersSummary.all
+        respond ClubQualifiersSummary.findAllBySeasonId(2)
     }
 }
