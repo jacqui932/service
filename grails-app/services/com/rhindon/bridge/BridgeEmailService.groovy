@@ -79,13 +79,13 @@ class BridgeEmailService {
                 .filter({it != null && isNotEmpty(it)}).distinct().collect(Collectors.toList())
     }
 
-    def sendHeatQualifier() {
-        HeatQualifier heatQualifier = HeatQualifier.get(124);
-
-//        heatQualifiers.each {
-            send(getEmailAddresses(heatQualifier), "Well done - you have qualified for the ${heatQualifier.heat.event.name}",
-                    renderHtmlForTemplate([heatQualifier: heatQualifier], 'heatQualifier'), 'hbatournamentsec@gmail.com', 'hbatournamentsec@gmail.com')
-//        }
+    def sendHeatQualifier(emails) {
+        emails.each {
+            if (it.emails.length > 0) {
+                send(it.emails, "Well done - you have qualified for the ${it.eventName}",
+                        renderHtmlForTemplate([heatQualifier: it], 'heatQualifier'), 'hbatournamentsec@gmail.com', 'hbatournamentsec@gmail.com')
+            }
+        }
     }
 
     def sendDesFlockhart() {
@@ -123,7 +123,7 @@ class BridgeEmailService {
      * @return 1 if successful, 0 if not sent, -1 if blacklisted
      */
     @SuppressWarnings(['LineLength', 'ElseBlockBraces'])
-    int send(List<String> destinationEmail,
+    int send(String[] destinationEmail,
              String subject,
              String htmlBody,
              String sourceEmail = '',

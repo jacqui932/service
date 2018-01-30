@@ -16,29 +16,29 @@
 
     <div class="col-md-12" style="padding-top: 10px">
         <p>
-            Dear <g:each in="${heatQualifier.heatQualifierPlayers}" var="heatQualifierPlayer">${heatQualifierPlayer.firstName}, </g:each>
+            Dear ${heatQualifier.name},
         </p>
         <h3>
             Congratulations!
         </h3>
         <p>
-            You have qualified for the '${heatQualifier.heat.event.name}' due to your great finishing position in the heat at ${heatQualifier.heat.club.name} on ${heatQualifier.heat.dateTime.format('d MMMM yyyy')}.
+            You have qualified for the ${heatQualifier.eventName} due to your great finishing position in the heat at ${heatQualifier.clubName} on ${heatQualifier.heatDate.format('d MMMM yyyy')}.
         </p>
         <p>
-            This event will be happening at ${heatQualifier.heat.event.venue.addressLine_1}, ${heatQualifier.heat.event.venue.addressLine_2}, ${heatQualifier.heat.event.venue.postcode} on ${heatQualifier.heat.event.dateTime.format('d MMMM yyyy')}.
+            This event will be happening at Bridge Centre, Welwyn Garden City, AL1 2BC on ${heatQualifier.eventDate.format('d MMMM yyyy')}.
         </p>
         <p>
             More details about the event can be found on the <a href="http://www.hertsbridge.co.uk/">Hertforshire Bridge Association web page</a>
         </p>
         <p>
-            The entry fee for the team is only <g:formatNumber number="${heatQualifier.heat.event.cost/100}" type="currency" currencyCode="GBP" /> and <a href="http://herts.bridgeentry.com/#/event/${heatQualifier.heat.event.id}">an entry form can be found here.</a>
+            The entry fee is only &pound;10.00 per pair and <a href="http://herts.bridgeentry.com/#/event/14">an entry form can be found here.</a>
         </p>
         <br/>
         <p>
             We hope to see you at the event,
         </p>
         <p>
-            ${raw(heatQualifier.heat.event.season.instance.entryConfirmationSignature)}
+            Jacqui and David Collier<br/>HBA Tournament Secretary
         </p>
     </div>
 </div>

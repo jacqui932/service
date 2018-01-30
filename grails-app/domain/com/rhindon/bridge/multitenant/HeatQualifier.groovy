@@ -9,6 +9,7 @@ class HeatQualifier {
 
     Heat heat
     EventEntry eventEntry
+    boolean withdrawn
 
     static mapping = {
         heat column: 'heat'

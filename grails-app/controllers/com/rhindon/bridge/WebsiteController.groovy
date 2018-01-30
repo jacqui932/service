@@ -41,7 +41,7 @@ class WebsiteController {
     }
 
     def entries(Long id) {
-        respond EventEntry.findAllByEvent(BridgeEvent.get(id), [fetch:[players:"join"]])
+        respond EventEntry.findAllByEventAndWithdrawn(BridgeEvent.get(id), false, [fetch:[players:"join"]])
     }
 
     @Transactional

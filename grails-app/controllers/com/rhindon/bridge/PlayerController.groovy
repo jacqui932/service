@@ -1,13 +1,17 @@
 package com.rhindon.bridge
 
 import com.rhindon.bridge.filter.PlayerFilter
-import com.rhindon.bridge.Player
+import grails.rest.RestfulController
 
-class PlayerController {
+class PlayerController extends RestfulController<Player> {
 
-	static responseFormats = ['json']
+    static responseFormats = ['json']
 
     def playerService
+
+    PlayerController() {
+        super(Player)
+    }
 
     def lookup(Long ebuNumber) {
         respond Player.findByEbuNumber(ebuNumber)

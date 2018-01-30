@@ -7,5 +7,7 @@ json {
     id eventEntry.id
     withdrawn eventEntry.withdrawn
     fullyPaid eventEntry.fullyPaid
+    payOnTheDay eventEntry.paymentMethod == 'Pay On The Day' && eventEntry.event.dateTime.after(new Date())
     players tmpl.eventEntryPlayer(eventEntry.players)
+    club eventEntry.club ? eventEntry.club.name : null
 }

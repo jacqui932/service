@@ -23,7 +23,7 @@
             </table>
         </div>
         <div style="padding-top: 30px">
-            <g:each in="${eventSummaries}" var="event">
+            <g:each in="${events}" var="event">
                 <div style="padding-bottom: 20px; page-break-inside:avoid;">
                     <div style="float: left"><h3 style="font-weight: bolder">${event.name}</h3></div>
                     <div style="float: right"><h3>${event.venue.addressLine_1}, <g:formatDate format="d MMMM, h:mm a" date="${event.dateTime}" timeZone="UTC"/></h3></div>

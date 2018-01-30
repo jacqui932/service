@@ -7,4 +7,5 @@ json {
     id heatQualifier.id
     players tmpl.heatQualifierPlayer(heatQualifier.heatQualifierPlayers)
     eventEntryId heatQualifier.eventEntryId
+    withdrawn heatQualifier.withdrawn
 }

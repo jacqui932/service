@@ -1,10 +1,14 @@
 package com.rhindon.bridge
 
 import com.rhindon.bridge.filter.*
+import com.rhindon.bridge.view.HeatQualifierEmailView
 import com.rhindon.bridge.multitenant.BridgeEvent
 import com.rhindon.bridge.multitenant.EventEntry
 import com.rhindon.bridge.multitenant.EventEntryPlayer
+import groovy.sql.Sql
 import org.hibernate.criterion.CriteriaSpecification
+
+import java.sql.Timestamp
 
 class ReportController {
 
@@ -22,6 +26,8 @@ class ReportController {
 
     def bridgeEmailService
 
+    def dataSource
+
     def monthlyFinancialReport(FinancialTransactionFilter filter) {
         render(filename: "File report_${filter.month}${filter.year}.pdf",
                 view: "/report/monthlyFinancialReport",
@@ -29,16 +35,31 @@ class ReportController {
     }
 
     def bridgeEventsReport(BridgeEventFilter filter) {
-        filter.year = 2017 - 1900
         render(filename: "File bridgeEvents.pdf",
                 view: "/report/bridgeEvents",
-                model: [events: bridgeEventService.search(filter)])
+                model: [events: BridgeEvent.findAllByDateTimeGreaterThan(new Date())])
     }
 
     def clubsReport(ClubFilter filter) {
-        render(filename: "File clubs.pdf",
-                view: "/report/clubs",
-                model: [clubs: clubService.search(filter)])
+        HeatQualifierEmailView[] qualifiers = HeatQualifierEmailView.findAllByEventId(14)
+        def grouped = (qualifiers.groupBy {it.heatQualifierId})
+        def emails = []
+        grouped.each {
+            def name = "${it.value[0].firstName} and ${it.value[1].firstName}"
+            emails.add(new EmailItem([
+                    name    : name,
+                    clubName : it.value[0].clubName,
+                    eventDate: it.value[0].eventDate,
+                    heatDate: it.value[0].dateTime,
+                    eventName: it.value[0].eventName,
+                    emails   : it.value.groupBy {it.email}.collect {it.key}.findAll {it != null && !it.empty},
+
+            ]))
+        }
+//        bridgeEmailService.sendHeatQualifier(emails)
+//        render(filename: "File clubs.pdf",
+//                view: "/report/clubs",
+//                model: [clubs: clubService.search(filter)])
     }
 
     def heatsReport(HeatFilter filter) {
@@ -112,4 +133,13 @@ class ReportController {
                         intermediate: groupVL(intermediate)
                 ])
     }
+}
+
+public class EmailItem {
+    String name;
+    String clubName;
+    Date heatDate;
+    Date eventDate;
+    String eventName;
+    String[] emails;
 }

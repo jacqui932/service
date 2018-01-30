@@ -48,5 +48,8 @@ class UrlMappings {
         post "/website/thankyou"(controller: "website", action: "thankyou")
 
         get "/player/lookup/$ebuNumber(.$format)?"(controller: "player", action: "lookup")
+
+        post "/upload/$heatId(.$format)?"(controller: "upload", action: "upload")
+        get "/apidoc/$action?/$id?"(controller: "apiDoc", action: "getDocuments")
     }
 }
