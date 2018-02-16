@@ -41,7 +41,7 @@ class ReportController {
     }
 
     def clubsReport(ClubFilter filter) {
-        HeatQualifierEmailView[] qualifiers = HeatQualifierEmailView.findAllByEventId(14)
+        HeatQualifierEmailView[] qualifiers = HeatQualifierEmailView.findAllByEventId(19)
         def grouped = (qualifiers.groupBy {it.heatQualifierId})
         def emails = []
         grouped.each {
@@ -116,9 +116,9 @@ class ReportController {
 
         all.forEach({
             Player player = Player.findByEbuNumber(it.ebuNumber)
-            if (player.masterpointGrade != null && player.masterpointGrade.id < 53) {
+            if (player.playerRankCodes && player.playerRankCodes[0].rankCode.id < 320) {
                 intermediate.add(it)
-                if (player.masterpointGrade != null && player.masterpointGrade.id < 7) {
+                if (player.playerRankCodes && player.playerRankCodes[0].rankCode.id < 7) {
                     cadet.add(it)
                 }
             }

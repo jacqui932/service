@@ -22,16 +22,16 @@
             Congratulations!
         </h3>
         <p>
-            You have qualified for the ${heatQualifier.eventName} due to your great finishing position in the heat at ${heatQualifier.clubName} on ${heatQualifier.heatDate.format('d MMMM yyyy')}.
+            You have qualified for the ${heatQualifier.eventName}.
         </p>
         <p>
-            This event will be happening at Bridge Centre, Welwyn Garden City, AL1 2BC on ${heatQualifier.eventDate.format('d MMMM yyyy')}.
+            This event will be happening at Bridge Centre, Welwyn Garden City, AL1 2BC on ${heatQualifier.eventDate.format('d MMMM yyyy')}.  More details about the event can be found on the <a href="http://www.hertsbridge.co.uk/">Hertforshire Bridge Association web page</a>
         </p>
         <p>
-            More details about the event can be found on the <a href="http://www.hertsbridge.co.uk/">Hertforshire Bridge Association web page</a>
+            The entry fee is only &pound;16.00 per pair and <a href="http://herts.bridgeentry.com/#/event/19">an entry form can be found here.</a>
         </p>
         <p>
-            The entry fee is only &pound;10.00 per pair and <a href="http://herts.bridgeentry.com/#/event/14">an entry form can be found here.</a>
+            Please fill out the entry form if you intend to play.  If you are not able to play in the final please let us know by replying to this email so that we have time to contact a reserve.
         </p>
         <br/>
         <p>

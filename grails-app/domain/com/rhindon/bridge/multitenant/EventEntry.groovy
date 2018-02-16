@@ -5,6 +5,7 @@ import grails.rest.Resource
 @Resource(readOnly = false, formats = ['json'])
 class EventEntry {
 
+    List players
     static hasMany = [
             players:EventEntryPlayer,
             financialTransactions:FinancialTransaction,
@@ -34,7 +35,8 @@ class EventEntry {
         email nullable: false, email: true
 
         // TODO: Remove not paid after migration (and from default above in field list)
-        paymentMethod nullable: false, inList: ['Not Paid', 'Cheque or Bank Transfer', 'Card', 'Pay On The Day']
+        paymentMethod nullable: false, inList: ['Cheque or Bank Transfer', 'Card',
+                                                'Pay On The Day', 'Cheque', 'Bank Transfer']
         dateEntered nullable: false
         heat nullable: true
         comments nullable: true

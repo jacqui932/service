@@ -44,6 +44,10 @@ class WebsiteController {
         respond EventEntry.findAllByEventAndWithdrawn(BridgeEvent.get(id), false, [fetch:[players:"join"]])
     }
 
+    def player(Long ebuNumber) {
+        respond Player.findByEbuNumber(ebuNumber)
+    }
+
     @Transactional
     def saveEntry(EventEntry eventEntry) {
         if (eventEntry == null) {

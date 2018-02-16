@@ -111,7 +111,7 @@ class BootStrap {
 //                    venue: Venue.get(1L)).save(failOnError: true)
 //
 //            // EVENT ENTRY
-//            new EventEntry(id: 1,
+//            new Entry(id: 1,
 //                    event: BridgeEvent.get(1),
 //                    name: 'Name',
 //                    email: 'jasnook@ntlworld.com',
@@ -120,15 +120,15 @@ class BootStrap {
 //                    comments: 'Comments').save(failOnError: true)
 //
 //            // EVENT ENTRY PLAYER
-//            new EventEntryPlayer(id: 1,
+//            new EntryPlayer(id: 1,
 //                    ebuNumber: 12345,
-//                    eventEntry: EventEntry.get(1L),
+//                    eventEntry: Entry.get(1L),
 //                    firstName: 'First',
 //                    lastName: 'Last').save(failOnError: true)
 //
-//            new EventEntryPlayer(id: 2,
+//            new EntryPlayer(id: 2,
 //                    ebuNumber: 54321,
-//                    eventEntry: EventEntry.get(1L),
+//                    eventEntry: Entry.get(1L),
 //                    firstName: 'Another',
 //                    lastName: 'Player').save(failOnError: true)
 //        }
