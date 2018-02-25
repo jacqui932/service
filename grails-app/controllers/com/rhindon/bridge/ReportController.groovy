@@ -24,7 +24,7 @@ class ReportController {
 
     def financialTransactionService
 
-    def bridgeEmailService
+//    def bridgeEmailService
 
     def dataSource
 
@@ -41,25 +41,31 @@ class ReportController {
     }
 
     def clubsReport(ClubFilter filter) {
-        HeatQualifierEmailView[] qualifiers = HeatQualifierEmailView.findAllByEventId(19)
-        def grouped = (qualifiers.groupBy {it.heatQualifierId})
-        def emails = []
-        grouped.each {
-            def name = "${it.value[0].firstName} and ${it.value[1].firstName}"
-            emails.add(new EmailItem([
-                    name    : name,
-                    clubName : it.value[0].clubName,
-                    eventDate: it.value[0].eventDate,
-                    heatDate: it.value[0].dateTime,
-                    eventName: it.value[0].eventName,
-                    emails   : it.value.groupBy {it.email}.collect {it.key}.findAll {it != null && !it.empty},
-
-            ]))
-        }
+//        HeatQualifierEmailView[] qualifiers = HeatQualifierEmailView.findAllByEventId(16)
+//        def grouped = (qualifiers.groupBy {it.heatQualifierId})
+//        def emails = []
+//        grouped.each {
+//            def name = "${it.value[0].firstName} and ${it.value[1].firstName}"
+//            emails.add(new EmailItem([
+//                    name    : name,
+//                    clubName : it.value[0].clubName,
+//                    eventDate: it.value[0].eventDate,
+//                    heatDate: it.value[0].dateTime,
+//                    eventName: it.value[0].eventName,
+//                    emails   : it.value.groupBy {it.email}.collect {it.key}.findAll {it != null && !it.empty},
+//
+//            ]))
+//        }
 //        bridgeEmailService.sendHeatQualifier(emails)
-//        render(filename: "File clubs.pdf",
-//                view: "/report/clubs",
-//                model: [clubs: clubService.search(filter)])
+        render(filename: "File clubs.pdf",
+                view: "/report/clubs",
+                model: [clubs: clubService.search(filter)])
+    }
+
+    def clubEventHeatQualifiersReport(ClubEventHeatQualifiersFilter filter) {
+        render(filename: "File clubEventHeatQualifiersReport.pdf",
+                view: "/report/clubEventHeatQualifiers",
+                model: heatService.createClubEventHeatQualifiersData(filter))
     }
 
     def heatsReport(HeatFilter filter) {

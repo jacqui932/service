@@ -28,12 +28,8 @@
             This event will be happening at Bridge Centre, Welwyn Garden City, AL1 2BC on ${heatQualifier.eventDate.format('d MMMM yyyy')}.  More details about the event can be found on the <a href="http://www.hertsbridge.co.uk/">Hertforshire Bridge Association web page</a>
         </p>
         <p>
-            The entry fee is only &pound;16.00 per pair and <a href="http://herts.bridgeentry.com/#/event/19">an entry form can be found here.</a>
+            The entry fee is only &pound;10.00 per pair and <a href="http://herts.bridgeentry.com/#/event/16">an entry form can be found here.</a>
         </p>
-        <p>
-            Please fill out the entry form if you intend to play.  If you are not able to play in the final please let us know by replying to this email so that we have time to contact a reserve.
-        </p>
-        <br/>
         <p>
             We hope to see you at the event,
         </p>

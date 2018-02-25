@@ -68,7 +68,7 @@
             %{--If you have paid online, you should shortly receive a confirmation of payment from our payment provider 'Stripe'.--}%
         %{--</p>--}%
 
-        <g:if test="${eventEntry.paymentMethod == 'Cheque or Bank Transfer'}">
+        <g:if test="${eventEntry.paymentMethod in ['Cheque or Bank Transfer', 'Cheque', 'Bank Transfer']}">
             <p>
                 %{--Otherwise, please either:--}%
                 Please either:

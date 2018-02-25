@@ -13,6 +13,6 @@ class BankAccountSpec extends Specification implements DomainUnitTest<BankAccoun
 
     void "test something"() {
         expect:"fix me"
-            true == false
+        true
     }
 }

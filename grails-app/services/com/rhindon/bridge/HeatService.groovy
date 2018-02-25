@@ -1,6 +1,7 @@
 package com.rhindon.bridge
 
 import com.rhindon.bridge.filter.HeatFilter
+import com.rhindon.bridge.filter.ClubEventHeatQualifiersFilter
 import com.rhindon.bridge.multitenant.BridgeEvent
 import com.rhindon.bridge.multitenant.Club
 import com.rhindon.bridge.multitenant.Heat
@@ -32,5 +33,12 @@ class HeatService {
         } else {
             []
         }
+    }
+
+    def createClubEventHeatQualifiersData(ClubEventHeatQualifiersFilter filter) {
+        def event = BridgeEvent.get(filter.event)
+        def club = Club.get(filter.club)
+        def heats = Heat.findAllByClubAndEvent(club, event)
+        return [heats: heats, event: event, club: club]
     }
 }

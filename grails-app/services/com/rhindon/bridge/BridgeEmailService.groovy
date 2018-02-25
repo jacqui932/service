@@ -80,11 +80,6 @@ class BridgeEmailService {
     }
 
     def sendHeatQualifier(emails) {
-//        send(["hbatournamentsec@gmail.com"] as String[], "Well done - you have qualified for the ${emails[0].eventName}",
-//                renderHtmlForTemplate([heatQualifier: emails[0]], 'heatQualifier'), 'hbatournamentsec@gmail.com',
-//                'hbatournamentsec@gmail.com')
-
-
         emails.each {
             if (it.emails.length > 0) {
                 send(it.emails, "Well done - you have qualified for the ${it.eventName}",

@@ -28,6 +28,7 @@ class UrlMappings {
         get "/asset/css"(controller: "asset", action: "css")
         get "/asset/logo"(controller: "asset", action: "logo")
 
+        post "/report/clubEventHeatQualifiersReport.$format"(controller: "report", action: "clubEventHeatQualifiersReport")
         post "/report/monthlyFinancialReport.$format"(controller: "report", action: "monthlyFinancialReport")
         post "/report/bridgeEventsReport.$format"(controller: "report", action: "bridgeEventsReport")
         post "/report/clubsReport.$format"(controller: "report", action: "clubsReport")
@@ -45,8 +46,6 @@ class UrlMappings {
         get "/website/event/$id(.$format)?"(controller: "website", action: "event")
         get "/website/player/$ebuNumber(.$format)?"(controller: "website", action: "player")
         post "/website/entry(.$format)?"(controller: "website", action: "saveEntry")
-
-        post "/website/thankyou"(controller: "website", action: "thankyou")
 
         get "/player/lookup/$ebuNumber(.$format)?"(controller: "player", action: "lookup")
 
