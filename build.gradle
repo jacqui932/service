@@ -64,6 +64,8 @@ dependencies {
     testCompile "org.grails:grails-gorm-testing-support"
     testCompile "org.grails.plugins:geb"
     testCompile "org.grails:grails-web-testing-support"
+    testCompile 'io.rest-assured:rest-assured:3.0.7'
+    testCompile "io.rest-assured:json-schema-validator:3.0.7"
     testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
     testRuntime "net.sourceforge.htmlunit:htmlunit:2.18"
     compile "com.stripe:stripe-java:3.2.0"

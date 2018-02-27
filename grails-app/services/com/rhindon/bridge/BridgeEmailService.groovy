@@ -83,25 +83,9 @@ class BridgeEmailService {
         emails.each {
             if (it.emails.length > 0) {
                 send(it.emails, "Well done - you have qualified for the ${it.eventName}",
-                        renderHtmlForTemplate([heatQualifier: it], 'heatQualifier'), 'hbatournamentsec@gmail.com', 'hbatournamentsec@gmail.com')
+                        renderHtmlForTemplate([heatQualifier: it], 'heatQualifier'),
+                        'hbatournamentsec@gmail.com', 'hbatournamentsec@gmail.com')
             }
-        }
-    }
-
-    def sendDesFlockhart() {
-//        def emailsTo = [
-//                [name: 'Jacqui', email: 'jasnook@ntlworld.com']
-//        ]
-        def emailsTo = [
-                [name: 'Ian', email: 'greig.ian@outlook.com'],
-                [name: 'Stan', email: 'tarastan30@gmail.com'],
-                [name: 'John', email: 'jmat261807@aol.com'],
-                [name: 'Roger', email: 'rogeredmonds2@gmail.com'],
-                [name: 'Susan', email: 'wbbcemail@gmail.com'],
-                [name: 'Alan', email: 'ajwo56@hotmail.com']
-        ]
-        emailsTo.each {
-            send([it.email], "Desmond Flockhart Trophy", renderHtmlForTemplate([name: it.name], 'desFlockhart'), 'hbatournamentsec@gmail.com', 'hbatournamentsec@gmail.com')
         }
     }
 

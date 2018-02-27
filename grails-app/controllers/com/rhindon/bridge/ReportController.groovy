@@ -12,8 +12,6 @@ import java.sql.Timestamp
 
 class ReportController {
 
-    def bridgeEventService
-
     def clubService
 
     def heatService
@@ -24,39 +22,19 @@ class ReportController {
 
     def financialTransactionService
 
-//    def bridgeEmailService
-
-    def dataSource
-
     def monthlyFinancialReport(FinancialTransactionFilter filter) {
         render(filename: "File report_${filter.month}${filter.year}.pdf",
                 view: "/report/monthlyFinancialReport",
                 model: financialTransactionService.createMonthlyFinancialReportData(filter))
     }
 
-    def bridgeEventsReport(BridgeEventFilter filter) {
+    def bridgeEventsReport() {
         render(filename: "File bridgeEvents.pdf",
                 view: "/report/bridgeEvents",
                 model: [events: BridgeEvent.findAllByDateTimeGreaterThan(new Date())])
     }
 
     def clubsReport(ClubFilter filter) {
-//        HeatQualifierEmailView[] qualifiers = HeatQualifierEmailView.findAllByEventId(16)
-//        def grouped = (qualifiers.groupBy {it.heatQualifierId})
-//        def emails = []
-//        grouped.each {
-//            def name = "${it.value[0].firstName} and ${it.value[1].firstName}"
-//            emails.add(new EmailItem([
-//                    name    : name,
-//                    clubName : it.value[0].clubName,
-//                    eventDate: it.value[0].eventDate,
-//                    heatDate: it.value[0].dateTime,
-//                    eventName: it.value[0].eventName,
-//                    emails   : it.value.groupBy {it.email}.collect {it.key}.findAll {it != null && !it.empty},
-//
-//            ]))
-//        }
-//        bridgeEmailService.sendHeatQualifier(emails)
         render(filename: "File clubs.pdf",
                 view: "/report/clubs",
                 model: [clubs: clubService.search(filter)])
@@ -139,13 +117,4 @@ class ReportController {
                         intermediate: groupVL(intermediate)
                 ])
     }
-}
-
-public class EmailItem {
-    String name;
-    String clubName;
-    Date heatDate;
-    Date eventDate;
-    String eventName;
-    String[] emails;
 }

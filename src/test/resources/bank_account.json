@@ -1,0 +1,95 @@
+{
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "properties": {
+    "id": {
+      "$id": "/properties/id",
+      "type": "integer",
+      "title": "The Id Schema",
+      "default": 0,
+      "examples": [
+        1
+      ]
+    },
+    "bankAccountNumber": {
+      "$id": "/properties/bankAccountNumber",
+      "type": "string",
+      "title": "The Bankaccountnumber Schema",
+      "default": "",
+      "examples": [
+        "33945168"
+      ]
+    },
+    "stripeApiTestKey": {
+      "$id": "/properties/stripeApiTestKey",
+      "type": "string",
+      "title": "The Stripeapitestkey Schema",
+      "default": "",
+      "examples": [
+        "sk_test_bJBzUjniwqb1sageSnRVrX2L"
+      ]
+    },
+    "name": {
+      "$id": "/properties/name",
+      "type": "string",
+      "title": "The Name Schema",
+      "default": "",
+      "examples": [
+        "HBA Bank Account"
+      ]
+    },
+    "chequeAddress": {
+      "$id": "/properties/chequeAddress",
+      "type": "string",
+      "title": "The Chequeaddress Schema",
+      "default": "",
+      "examples": [
+        "13 Sish Close, Stevenage, SG1 3LT"
+      ]
+    },
+    "stripeProductionMode": {
+      "$id": "/properties/stripeProductionMode",
+      "type": "boolean",
+      "title": "The Stripeproductionmode Schema",
+      "default": false,
+      "examples": [
+        false
+      ]
+    },
+    "chequePayee": {
+      "$id": "/properties/chequePayee",
+      "type": "string",
+      "title": "The Chequepayee Schema",
+      "default": "",
+      "examples": [
+        "Hertfordshire Bridge Association"
+      ]
+    },
+    "stripeApiKey": {
+      "$id": "/properties/stripeApiKey",
+      "type": "string",
+      "title": "The Stripeapikey Schema",
+      "default": "",
+      "examples": [
+        "sk_test_bJBzUjniwqb1sageSnRVrX2L"
+      ]
+    },
+    "sortCode": {
+      "$id": "/properties/sortCode",
+      "type": "string",
+      "title": "The Sortcode Schema",
+      "default": "",
+      "examples": [
+        "30-93-89"
+      ]
+    }
+  },
+  "required": [
+    "id",
+    "bankAccountNumber",
+    "name",
+    "chequeAddress",
+    "chequePayee",
+    "sortCode"
+  ]
+}
