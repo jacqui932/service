@@ -34,7 +34,7 @@
                         <td>
                             <g:if test="${heatQualifier.eventEntry}">Entered</g:if>
                             <g:else>
-                                <g:if test="${heatQualifier.withdrawn}">Declined</g:if>
+                                <g:if test="${heatQualifier.withdrawn}">Declined/Qualified Elsewhere</g:if>
                                 <g:else>Not Responded</g:else>
                             </g:else>
                         </td>

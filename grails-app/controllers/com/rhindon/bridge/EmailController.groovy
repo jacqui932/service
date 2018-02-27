@@ -18,8 +18,7 @@ class EmailController {
                     eventDate: it.value[0].eventDate,
                     heatDate : it.value[0].dateTime,
                     eventName: it.value[0].eventName,
-                    emails   : it.value.groupBy { it.email }.collect { it.key }.findAll { it != null && !it.empty },
-
+                    emails   : it.value.groupBy { it.email }.collect { it.key }.findAll { it != null && !it.empty }
             ]))
         }
         bridgeEmailService.sendHeatQualifier(emails)
