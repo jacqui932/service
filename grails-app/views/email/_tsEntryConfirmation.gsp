@@ -37,10 +37,10 @@
                             </ul>
                         </td>
                     </tr>
-                    %{--<tr>--}%
-                        %{--<td style="padding-right: 50px">Payment Method</td>--}%
-                        %{--<td>${eventEntry.paymentMethod}</td>--}%
-                    %{--</tr>--}%
+                    <tr>
+                        <td style="padding-right: 50px">Payment Method</td>
+                        <td>${eventEntry.paymentMethod}</td>
+                    </tr>
                     <tr>
                         <td style="padding-right: 50px">Date/Time Entered</td>
                         <td><g:formatDate format="d MMMM yyyy" date="${eventEntry.dateEntered}" timeZone="Europe/London"/> at <g:formatDate format="h:mm a" date="${eventEntry.dateEntered}" timeZone="Europe/London"/></td>
